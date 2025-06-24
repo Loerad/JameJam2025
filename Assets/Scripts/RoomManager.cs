@@ -32,11 +32,16 @@ public class RoomManager : MonoBehaviour
         cam.transform.position = new Vector3(cam.transform.position.x, cam.transform.position.y, -10);
     }
 
+    public int GetCurrentRoom()
+    {
+        return roomIndex;
+    }
+
     public void DebugRoomChange(InputAction.CallbackContext context)
     {
         if (context.action.phase == InputActionPhase.Started)
         {
-            if(rooms.IndexOf(currentRoom) == rooms.IndexOf(rooms.Last()))
+            if (rooms.IndexOf(currentRoom) == rooms.IndexOf(rooms.Last()))
             {
                 roomIndex = 0;
             }
