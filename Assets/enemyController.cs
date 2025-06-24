@@ -21,8 +21,6 @@ public class enemyController : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("TEST1");
-
         if (collision.gameObject.CompareTag("Border"))
         {
             direction *= -1f;
@@ -36,7 +34,6 @@ public class enemyController : MonoBehaviour
                 transform.localScale = Vector3.one;
                 hasTurned = false;
             }
-            Debug.Log("TEST2");
         }
         if (collision.gameObject.CompareTag("Player"))
         {
