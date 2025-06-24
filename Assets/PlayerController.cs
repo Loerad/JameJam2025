@@ -7,7 +7,12 @@ public class PlayerControlller : MonoBehaviour
     Vector2 moveAmount;
     [SerializeField] private float playerSpeed;
     private Vector2 playerVelocity;
-    [SerializeField] Rigidbody2D rb;
+    [SerializeField] CharacterController controller;
+    public bool IsWall = false;
+    Vector2 move;
+    Vector2 finalMove;
+    const float GRAVITY = -9.81f;
+    bool groundedPlayer;
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -15,10 +20,32 @@ public class PlayerControlller : MonoBehaviour
     }
     private void Update()
     {
-        Vector2 move = new Vector2(moveAmount.x, moveAmount.y);
+        groundedPlayer = controller.isGrounded;
+        if (groundedPlayer && playerVelocity.y < 0)
+        {
+            playerVelocity.y = 0f;
+        }
+
+        if (!IsWall) 
+        { 
+            move = new Vector2(moveAmount.x, 0);            
+        }
+        else
+        {
+            move = new Vector2(moveAmount.x, moveAmount.y);
+        }
         move.Normalize();
-        Vector2 finalMove = ((move * playerSpeed) + (playerVelocity.y * Vector2.up) *Time.deltaTime);
+        if (move != Vector2.zero)
+        {
+            transform.right = move;
+        }
+        if (!IsWall)
+        {
+            playerVelocity.y += GRAVITY * Time.deltaTime;
+        }
+        finalMove = ((move * playerSpeed) + (playerVelocity.y * Vector2.up));
         transform.rotation = Quaternion.Euler(transform.rotation.x,0, transform.position.z);
-        rb.MovePosition(finalMove);
+        controller.Move(finalMove * Time.deltaTime);
+
     }
 }
