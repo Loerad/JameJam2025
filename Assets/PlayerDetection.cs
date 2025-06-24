@@ -12,7 +12,7 @@ public class PlayerDetection : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            SceneManager.LoadScene(0); // Enter the loaded scene
+            SceneManager.LoadScene(1); // Enter the loaded scene
         }
     }
 }

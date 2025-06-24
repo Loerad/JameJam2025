@@ -8,7 +8,8 @@ public class enemyController : MonoBehaviour
     [SerializeField] bool isMoving;
     Vector3 direction = Vector3.right;
     [SerializeField] public float Speed = 1f;
-
+    [SerializeField] GameObject enemy;
+    private bool hasTurned;
 
     void Update()
     {
@@ -22,10 +23,24 @@ public class enemyController : MonoBehaviour
     {
         Debug.Log("TEST1");
 
-        if (collision.gameObject.CompareTag("Border")|| collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Border"))
         {
             direction *= -1f;
+            if (!hasTurned) 
+            { 
+                transform.localScale = new Vector3(-1f, 1f, 1f);
+                hasTurned = true;
+            }
+            else
+            {
+                transform.localScale = Vector3.one;
+                hasTurned = false;
+            }
             Debug.Log("TEST2");
+        }
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            SceneManager.LoadScene(1);
         }
     }
 }
