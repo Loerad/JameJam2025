@@ -44,9 +44,9 @@ public class PlayerControlller : MonoBehaviour
         {
             playerVelocity.y = 0f;
         }
-        if (state == PlayerState.onWall) 
-        { 
-            move = new Vector2(moveAmount.x, moveAmount.y);            
+        if (state == PlayerState.onWall)
+        {
+            move = new Vector2(moveAmount.x, moveAmount.y);
         }
         else
         {
@@ -58,13 +58,13 @@ public class PlayerControlller : MonoBehaviour
         {
             transform.right = move;
         }
-        if (!IsWall|| state == PlayerState.normal)
+        if (!IsWall || state == PlayerState.normal)
         {
             state = PlayerState.normal;
             playerVelocity.y += GRAVITY * Time.deltaTime;
         }
         finalMove = ((move * playerSpeed) + (playerVelocity.y * Vector2.up));
-        transform.rotation = Quaternion.Euler(transform.rotation.x,0, transform.position.z);
+        transform.rotation = Quaternion.Euler(transform.rotation.x, 0, transform.position.z);
         controller.Move(finalMove * Time.deltaTime);
     }
 }
