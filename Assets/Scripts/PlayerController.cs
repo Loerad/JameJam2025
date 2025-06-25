@@ -19,6 +19,9 @@ public class PlayerControlller : MonoBehaviour
     const float GRAVITY = -9.81f;
     bool groundedPlayer;
     PlayerState state;
+    public bool CantMove;
+    public bool AtPot;
+    public GameObject Enemy;
     public void OnMove(InputAction.CallbackContext context)
     {
         moveAmount = context.ReadValue<Vector2>();
@@ -37,6 +40,20 @@ public class PlayerControlller : MonoBehaviour
             }
         }
     }
+    public void OnInteract2(InputAction.CallbackContext context)
+    {
+        if (context.action.phase == InputActionPhase.Started)
+        {
+            if (AtPot)
+            {
+                CantMove = !CantMove;
+                if (Enemy != null)
+                {
+                    Destroy(Enemy);
+                }
+            }
+        }
+    }
     private void Update()
     {
         groundedPlayer = controller.isGrounded;
@@ -44,27 +61,31 @@ public class PlayerControlller : MonoBehaviour
         {
             playerVelocity.y = 0f;
         }
-        if (state == PlayerState.onWall) 
-        { 
-            move = new Vector2(moveAmount.x, moveAmount.y);            
+        if (state == PlayerState.onWall)
+        {
+            move = new Vector2(moveAmount.x, moveAmount.y);
         }
         else
         {
             move = new Vector2(moveAmount.x, 0);
         }
-
         move.Normalize();
         if (move != Vector2.zero)
         {
             transform.right = move;
         }
-        if (!IsWall|| state == PlayerState.normal)
+        if (!IsWall || state == PlayerState.normal)
         {
             state = PlayerState.normal;
             playerVelocity.y += GRAVITY * Time.deltaTime;
         }
         finalMove = ((move * playerSpeed) + (playerVelocity.y * Vector2.up));
-        transform.rotation = Quaternion.Euler(transform.rotation.x,0, transform.position.z);
+        transform.rotation = Quaternion.Euler(transform.rotation.x, 0, transform.position.z);
+        if (CantMove)
+        {
+            controller.Move(playerVelocity * Time.deltaTime);
+            return;
+        }
         controller.Move(finalMove * Time.deltaTime);
     }
 }
