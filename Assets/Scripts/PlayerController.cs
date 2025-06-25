@@ -61,6 +61,7 @@ public class PlayerControlller : MonoBehaviour
         {
             playerVelocity.y = 0f;
         }
+
         if (state == PlayerState.onWall)
         {
             move = new Vector2(moveAmount.x, moveAmount.y);
@@ -69,24 +70,43 @@ public class PlayerControlller : MonoBehaviour
         {
             move = new Vector2(moveAmount.x, 0);
         }
+
         move.Normalize();
         if (move != Vector2.zero)
         {
             transform.right = move;
         }
+        
         if (!IsWall || state == PlayerState.normal)
         {
             state = PlayerState.normal;
-            playerVelocity.y += GRAVITY * Time.deltaTime;
+            if (!groundedPlayer)
+            {
+                playerVelocity.y += GRAVITY * Time.deltaTime;
+            }
         }
-        animator.SetTrigger("Start Walk");
-        finalMove = ((move * playerSpeed) + (playerVelocity.y * Vector2.up));
+
+        finalMove = (move * playerSpeed) + (playerVelocity.y * Vector2.up);
         transform.rotation = Quaternion.Euler(transform.rotation.x, 0, transform.position.z);
         if (CantMove)
         {
             controller.Move(playerVelocity * Time.deltaTime);
             return;
         }
+
         controller.Move(finalMove * Time.deltaTime);
+        HandleAnimation();
+    }
+
+    void HandleAnimation()
+    {
+        if (move == Vector2.zero)
+        {
+            animator.SetTrigger("Idle");
+        }
+        else
+        {
+            animator.SetTrigger("Walk");
+        }
     }
 }
