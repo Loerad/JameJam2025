@@ -19,6 +19,7 @@ public class PlayerControlller : MonoBehaviour
     const float GRAVITY = -9.81f;
     bool groundedPlayer;
     PlayerState state;
+    public bool CantMove;
     public void OnMove(InputAction.CallbackContext context)
     {
         moveAmount = context.ReadValue<Vector2>();
@@ -52,7 +53,6 @@ public class PlayerControlller : MonoBehaviour
         {
             move = new Vector2(moveAmount.x, 0);
         }
-
         move.Normalize();
         if (move != Vector2.zero)
         {
@@ -65,6 +65,11 @@ public class PlayerControlller : MonoBehaviour
         }
         finalMove = ((move * playerSpeed) + (playerVelocity.y * Vector2.up));
         transform.rotation = Quaternion.Euler(transform.rotation.x, 0, transform.position.z);
+        if (CantMove)
+        {
+            controller.Move(playerVelocity * Time.deltaTime);
+            return;
+        }
         controller.Move(finalMove * Time.deltaTime);
     }
 }
