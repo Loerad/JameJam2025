@@ -8,7 +8,7 @@ public class WallController : MonoBehaviour
     {
         player = GameObject.Find("Player").GetComponent<PlayerControlller>();
     }
-    
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))

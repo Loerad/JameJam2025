@@ -6,6 +6,10 @@ public class DoorController : MonoBehaviour
     private GameObject connectedDoor;
     [SerializeField]
     private int connectedDoorRoomIndex;
+    [SerializeField]
+    private GameObject startingGlyph;
+    [SerializeField]
+    private GameObject onGlyph = null; //can be null cause some doors dont have toggleable states
     private GameObject player;
     private DoorInteraction interactor;
     [SerializeField]
@@ -25,6 +29,17 @@ public class DoorController : MonoBehaviour
         player.transform.position = connectedDoor.transform.position + new Vector3(0, 1.1f, 0);
         player.GetComponent<CharacterController>().enabled = true;
         RoomManager.Instance.ChangeRoom(RoomManager.Instance.GetCurrentRoomFromIndex(connectedDoorRoomIndex));
+    }
+
+    public void Unlock()
+    {
+        isLocked = false;
+        startingGlyph.SetActive(false);
+        onGlyph.SetActive(true);
+        DoorController door = connectedDoor.GetComponent<DoorController>();
+        door.isLocked = false;
+        door.startingGlyph.SetActive(false);
+        door.onGlyph.SetActive(true);
     }
 
     void OnTriggerEnter2D(Collider2D collision)

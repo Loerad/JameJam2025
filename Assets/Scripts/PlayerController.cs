@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 public enum PlayerState
@@ -20,8 +21,14 @@ public class PlayerControlller : MonoBehaviour
     public bool CantMove;
     public bool AtPot;
     public GameObject Enemy;
+    [HideInInspector]
+    public GameObject doorToOpenFromPot;
+    [HideInInspector]
+    public bool atDoorPot;
     [SerializeField]
     private Animator animator;
+    [SerializeField]
+    private List<GameObject> ladderBlockers = new();
     public void OnMove(InputAction.CallbackContext context)
     {
         moveAmount = context.ReadValue<Vector2>();
@@ -33,6 +40,10 @@ public class PlayerControlller : MonoBehaviour
             if (IsWall && state == PlayerState.normal)
             {
                 state = PlayerState.onWall;
+                foreach (GameObject blocker in ladderBlockers)
+                {
+                    blocker.GetComponent<BoxCollider>().enabled = false;
+                }
             }
             else
             {
@@ -47,6 +58,10 @@ public class PlayerControlller : MonoBehaviour
             if (AtPot)
             {
                 CantMove = !CantMove;
+                if (atDoorPot)
+                {
+                    doorToOpenFromPot.GetComponent<DoorController>().Unlock();
+                }
                 if (Enemy != null)
                 {
                     Destroy(Enemy);
@@ -56,6 +71,7 @@ public class PlayerControlller : MonoBehaviour
     }
     private void Update()
     {
+
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0)
         {
@@ -76,10 +92,14 @@ public class PlayerControlller : MonoBehaviour
         {
             transform.right = move;
         }
-        
+
         if (!IsWall || state == PlayerState.normal)
         {
             state = PlayerState.normal;
+            foreach (GameObject blocker in ladderBlockers)
+            {
+                blocker.GetComponent<BoxCollider>().enabled = true;
+            }
             if (!groundedPlayer)
             {
                 playerVelocity.y += GRAVITY * Time.deltaTime;

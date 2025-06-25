@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -21,6 +22,7 @@ public class DoorInteraction : MonoBehaviour
         
     }
 
+
     public void ForgetDoor()
     {
         currentDoor = null;
@@ -32,7 +34,15 @@ public class DoorInteraction : MonoBehaviour
     {
         if (context.action.phase == InputActionPhase.Started)
         {
-            if (atDoor)
+            if (atExitDoor)
+            {
+                #if UNITY_EDITOR
+                EditorApplication.ExitPlaymode();
+                #else
+                Application.Quit(); //needs change to go to main menu
+                #endif
+            }
+            else if (atDoor)
             {
                 currentDoor.GetComponent<DoorController>().OnInteraction();
             }
