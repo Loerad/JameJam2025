@@ -20,6 +20,8 @@ public class PlayerControlller : MonoBehaviour
     bool groundedPlayer;
     PlayerState state;
     public bool CantMove;
+    public bool AtPot;
+    public GameObject Enemy;
     public void OnMove(InputAction.CallbackContext context)
     {
         moveAmount = context.ReadValue<Vector2>();
@@ -35,6 +37,20 @@ public class PlayerControlller : MonoBehaviour
             else
             {
                 state = PlayerState.normal;
+            }
+        }
+    }
+    public void OnInteract2(InputAction.CallbackContext context)
+    {
+        if (context.action.phase == InputActionPhase.Started)
+        {
+            if (AtPot)
+            {
+                CantMove = !CantMove;
+                if (Enemy != null)
+                {
+                    Destroy(Enemy);
+                }
             }
         }
     }
