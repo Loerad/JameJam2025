@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e60e496636e560646ba278b59b5d6d0d
+guid: 35f683c04a4f54f409968318b4c9d9c5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3873459328515691370
-    second: Room34_0
+      213: -3000907250695245019
+    second: enemy arm _0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Room34_0
+      name: enemy arm _0
       rect:
         serializedVersion: 2
-        x: 62
-        y: 150
-        width: 1299
-        height: 524
+        x: 8
+        y: 0
+        width: 83
+        height: 136
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 69c26ef5345be3ac0800000000000000
-      internalID: -3873459328515691370
+      spriteID: 5237a6641c2aa56d0800000000000000
+      internalID: -3000907250695245019
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Room34_0: -3873459328515691370
+      enemy arm _0: -3000907250695245019
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

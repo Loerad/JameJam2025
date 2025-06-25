@@ -22,7 +22,7 @@ public class DoorController : MonoBehaviour
     public void OnInteraction()//may need callback
     {
         player.GetComponent<CharacterController>().enabled = false;
-        player.transform.position = connectedDoor.transform.position;
+        player.transform.position = connectedDoor.transform.position + new Vector3(0, 1.1f, 0);
         player.GetComponent<CharacterController>().enabled = true;
         RoomManager.Instance.ChangeRoom(RoomManager.Instance.GetCurrentRoomFromIndex(connectedDoorRoomIndex));
     }
