@@ -25,27 +25,17 @@ public class RoomManager : MonoBehaviour
             Instance = this;
         }
     }
-    public void OnRoomChange(GameObject roomToChange)
+    public void ChangeRoom(GameObject roomToChange)
     {
         currentRoom = roomToChange;
         cam.transform.position = currentRoom.transform.position;
         cam.transform.position = new Vector3(cam.transform.position.x, cam.transform.position.y, -10);
     }
 
-    public void DebugRoomChange(InputAction.CallbackContext context)
+    public GameObject GetCurrentRoomFromIndex(int index)
     {
-        if (context.action.phase == InputActionPhase.Started)
-        {
-            if(rooms.IndexOf(currentRoom) == rooms.IndexOf(rooms.Last()))
-            {
-                roomIndex = 0;
-            }
-            else
-            {
-                roomIndex++;
-            }
-
-            OnRoomChange(rooms[roomIndex]);
-        }
+        return rooms[index];
     }
+
+
 }
