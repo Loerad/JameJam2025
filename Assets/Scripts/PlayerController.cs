@@ -20,6 +20,8 @@ public class PlayerControlller : MonoBehaviour
     public bool CantMove;
     public bool AtPot;
     public GameObject Enemy;
+    [SerializeField]
+    private Animator animator;
     public void OnMove(InputAction.CallbackContext context)
     {
         moveAmount = context.ReadValue<Vector2>();
@@ -77,6 +79,7 @@ public class PlayerControlller : MonoBehaviour
             state = PlayerState.normal;
             playerVelocity.y += GRAVITY * Time.deltaTime;
         }
+        animator.SetTrigger("Start Walk");
         finalMove = ((move * playerSpeed) + (playerVelocity.y * Vector2.up));
         transform.rotation = Quaternion.Euler(transform.rotation.x, 0, transform.position.z);
         if (CantMove)
