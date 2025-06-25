@@ -197,7 +197,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6180349343145188311, guid: 4fc955e1467e6c144b6fe0a2c80e554b, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6180349343145188311, guid: 4fc955e1467e6c144b6fe0a2c80e554b, type: 3}
       propertyPath: m_TagString
@@ -523,6 +523,7 @@ MonoBehaviour:
   playerSpeed: 6
   controller: {fileID: 600501841}
   IsWall: 0
+  CanMove: 0
 --- !u!212 &600501839
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -631,7 +632,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a01cf108f82d8a42a891ce560ce67ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 600501835}
+  player: {fileID: 0}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0

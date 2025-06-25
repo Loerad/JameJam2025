@@ -3,7 +3,13 @@ using UnityEngine.InputSystem;
 
 public class HideController : MonoBehaviour
 {
-    [SerializeField] GameObject Player;
+    GameObject Player;
+    PlayerControlller controller;
+    private void Start()
+    {
+        Player = transform.GetChild(0).gameObject;
+        controller = GetComponent<PlayerControlller>();
+    }
     public void OnHide(InputAction.CallbackContext context)
     {
         int layerHidden = LayerMask.NameToLayer("Hidden");
@@ -14,12 +20,12 @@ public class HideController : MonoBehaviour
             if (Player.layer != layerHidden)
             {
                 Player.layer = layerHidden;
-                Debug.Log("Hidden");
+                controller.CantMove = true;
             }
             else
             {
                 Player.layer = layerVisable;
-                Debug.Log("visable");
+                controller.CantMove = false;
             }
         }
     }
