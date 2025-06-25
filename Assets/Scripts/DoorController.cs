@@ -32,7 +32,7 @@ public class DoorController : MonoBehaviour
         print("Cheese");
         if (collision.CompareTag("Player"))
         {
-            interactor.ReceiveDoor(gameObject);
+            interactor.ReceiveDoor(gameObject, isGameExit, isLocked);
         }
     }
 
