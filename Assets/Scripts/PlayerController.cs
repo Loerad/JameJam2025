@@ -25,6 +25,7 @@ public class PlayerControlller : MonoBehaviour
     public GameObject Enemy;
 
     public GameObject doorToOpenFromPot;
+    public PotController currentPot;
 
     public bool atDoorPot;
     [SerializeField]
@@ -75,6 +76,8 @@ public class PlayerControlller : MonoBehaviour
                 }
                 if (atDoorPot)
                 {
+                    currentPot.startingGlyph.SetActive(false);
+                    currentPot.onGlyph.SetActive(true);
                     doorToOpenFromPot.GetComponent<DoorController>().Unlock();
                 }
                 if (Enemy != null)
