@@ -35,9 +35,5 @@ public class enemyController : MonoBehaviour
                 hasTurned = false;
             }
         }
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            SceneManager.LoadScene(1);
-        }
     }
 }

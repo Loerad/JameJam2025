@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 public enum PlayerState
 {
     normal,
@@ -81,6 +82,14 @@ public class PlayerControlller : MonoBehaviour
                     Destroy(Enemy);
                 }
             }
+        }
+    }
+
+    public void OnExit(InputAction.CallbackContext context)
+    {
+        if(context.action.phase == InputActionPhase.Started)
+        {
+            SceneManager.LoadScene("Menu");
         }
     }
     private void Update()

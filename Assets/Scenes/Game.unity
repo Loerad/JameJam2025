@@ -12824,6 +12824,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: a50b41ac-ef9b-41aa-832e-69248b45c728
     m_ActionName: 'Player/Interact2[/Keyboard/f]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1514813710}
+        m_TargetAssemblyTypeName: PlayerControlller, Assembly-CSharp
+        m_MethodName: OnExit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 05347b01-a504-4b72-ab8d-2b9c48572e8f
+    m_ActionName: Player/New action
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
