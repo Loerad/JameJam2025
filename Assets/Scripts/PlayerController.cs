@@ -22,9 +22,9 @@ public class PlayerControlller : MonoBehaviour
     public bool CantMove;
     public bool AtPot;
     public GameObject Enemy;
-    [HideInInspector]
+
     public GameObject doorToOpenFromPot;
-    [HideInInspector]
+
     public bool atDoorPot;
     [SerializeField]
     private Animator animator;
@@ -64,6 +64,14 @@ public class PlayerControlller : MonoBehaviour
             if (AtPot)
             {
                 CantMove = !CantMove;
+                if (CantMove)
+                {
+                    animator.SetTrigger("EnterPot");
+                }
+                else
+                {
+                    animator.SetTrigger("LeavePot");
+                }
                 if (atDoorPot)
                 {
                     doorToOpenFromPot.GetComponent<DoorController>().Unlock();

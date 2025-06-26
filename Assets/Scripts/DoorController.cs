@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DoorController : MonoBehaviour
 {
@@ -25,6 +26,10 @@ public class DoorController : MonoBehaviour
 
     public void OnInteraction()//may need callback
     {
+        if (isGameExit)
+        {
+            SceneManager.LoadScene("Menu");
+        }
         player.GetComponent<CharacterController>().enabled = false;
         player.transform.position = connectedDoor.transform.position + new Vector3(0, 1.1f, 0);
         player.GetComponent<CharacterController>().enabled = true;
@@ -36,10 +41,13 @@ public class DoorController : MonoBehaviour
         isLocked = false;
         startingGlyph.SetActive(false);
         onGlyph.SetActive(true);
-        DoorController door = connectedDoor.GetComponent<DoorController>();
-        door.isLocked = false;
-        door.startingGlyph.SetActive(false);
-        door.onGlyph.SetActive(true);
+        if (!isGameExit)
+        {
+            DoorController door = connectedDoor.GetComponent<DoorController>();
+            door.isLocked = false;
+            door.startingGlyph.SetActive(false);
+            door.onGlyph.SetActive(true);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)

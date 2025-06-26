@@ -33,6 +33,8 @@ public class PotController : MonoBehaviour
             {
                 collision.gameObject.GetComponentInParent<PlayerControlller>().Enemy = null;
             }
+            collision.gameObject.GetComponentInParent<PlayerControlller>().atDoorPot = false;
+            collision.gameObject.GetComponentInParent<PlayerControlller>().doorToOpenFromPot = null;
         }
     }
 }
