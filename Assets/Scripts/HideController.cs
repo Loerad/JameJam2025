@@ -5,10 +5,12 @@ public class HideController : MonoBehaviour
 {
     GameObject Player;
     PlayerControlller controller;
+    Animator animator;
     private void Start()
     {
         Player = transform.GetChild(0).gameObject;
         controller = GetComponent<PlayerControlller>();
+        animator = GetComponentInChildren<Animator>();
     }
     public void OnHide(InputAction.CallbackContext context)
     {
@@ -21,17 +23,14 @@ public class HideController : MonoBehaviour
             {
                 Player.layer = layerHidden;
                 controller.CantMove = true;
+                animator.SetTrigger("EnterHide");
             }
             else
             {
                 Player.layer = layerVisable;
                 controller.CantMove = false;
+                animator.SetTrigger("LeaveHide");
             }
         }
-    }
-    void Update()
-    {
-
-
     }
 }

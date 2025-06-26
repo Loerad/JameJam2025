@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class WallController : MonoBehaviour
 {
-    [SerializeField] PlayerControlller player;
-    void Update()
+    PlayerControlller player;
+
+    void Start()
     {
-        
+        player = GameObject.Find("Player").GetComponent<PlayerControlller>();
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
