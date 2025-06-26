@@ -35,9 +35,12 @@ public class enemyController : MonoBehaviour
                 hasTurned = false;
             }
         }
-        if (collision.gameObject.CompareTag("Player"))
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
         {
-            SceneManager.LoadScene("Game");
+            SceneManager.LoadScene("Game"); // Enter the loaded scene
         }
     }
 }

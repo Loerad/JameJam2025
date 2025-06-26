@@ -765,6 +765,10 @@ MonoBehaviour:
   CantMove: 0
   AtPot: 0
   Enemy: {fileID: 0}
+  doorToOpenFromPot: {fileID: 0}
+  atDoorPot: 0
+  animator: {fileID: 0}
+  ladderBlockers: []
 --- !u!212 &600501839
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -968,10 +972,6 @@ PrefabInstance:
     - target: {fileID: 1613260559590997175, guid: 0abf73af53d45d343a156c675cdaf00c, type: 3}
       propertyPath: m_Name
       value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 1651650355121519220, guid: 0abf73af53d45d343a156c675cdaf00c, type: 3}
-      propertyPath: isMoving
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3648475288710442552, guid: 0abf73af53d45d343a156c675cdaf00c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1545,6 +1545,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 190089535}
+  door: {fileID: 0}
+  isDoorPot: 0
 --- !u!1 &1945867080
 GameObject:
   m_ObjectHideFlags: 0
