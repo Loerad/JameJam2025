@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -29,6 +30,11 @@ public class PlayerControlller : MonoBehaviour
     private Animator animator;
     [SerializeField]
     private List<GameObject> ladderBlockers = new();
+    [SerializeField]
+    private SpriteRenderer spriteBody;
+    [SerializeField]
+    private SpriteRenderer spriteFace;
+
     public void OnMove(InputAction.CallbackContext context)
     {
         moveAmount = context.ReadValue<Vector2>();
@@ -120,6 +126,16 @@ public class PlayerControlller : MonoBehaviour
 
     void HandleAnimation()
     {
+        if (move.x < 0f)
+        {
+            spriteBody.flipX = true;
+            spriteFace.flipX = true;
+        }
+        else if (move.x > 0f)
+        {
+            spriteBody.flipX = false;
+            spriteFace.flipX = false;
+        }
         if (move == Vector2.zero)
         {
             animator.SetTrigger("Idle");

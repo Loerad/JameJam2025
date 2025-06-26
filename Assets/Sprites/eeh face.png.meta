@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: f8ab1c7286132d34d900d822168445c7
+guid: 58ca243549d7060408215b0edd7f1985
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8379894924412182712
-    second: stand copy_0
+      213: 5927752489340232874
+    second: eeh face_0
+  - first:
+      213: 580835846817189119
+    second: eeh face_1
+  - first:
+      213: 8345164914042873737
+    second: eeh face_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +119,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: stand copy_0
+      name: eeh face_0
       rect:
         serializedVersion: 2
-        x: 61
-        y: 48
-        width: 133
-        height: 123
+        x: 20
+        y: 26
+        width: 9
+        height: 9
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +134,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8b0efa0090e5b4470800000000000000
-      internalID: 8379894924412182712
+      spriteID: aa4ef838b7b934250800000000000000
+      internalID: 5927752489340232874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: eeh face_1
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 22
+        width: 35
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffc0a52102b8f0800800000000000000
+      internalID: 580835846817189119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: eeh face_2
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 34
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9872495564bffc370800000000000000
+      internalID: 8345164914042873737
       vertices: []
       indices: 
       edges: []
@@ -148,7 +198,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      stand copy_0: 8379894924412182712
+      eeh face_0: 5927752489340232874
+      eeh face_1: 580835846817189119
+      eeh face_2: 8345164914042873737
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
