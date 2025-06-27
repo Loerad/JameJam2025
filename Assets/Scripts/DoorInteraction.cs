@@ -1,6 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class DoorInteraction : MonoBehaviour
 {
@@ -36,11 +37,7 @@ public class DoorInteraction : MonoBehaviour
         {
             if (atExitDoor)
             {
-                #if UNITY_EDITOR
-                EditorApplication.ExitPlaymode();
-                #else
-                Application.Quit(); //needs change to go to main menu
-                #endif
+                SceneManager.LoadScene("Menu");
             }
             else if (atDoor)
             {
