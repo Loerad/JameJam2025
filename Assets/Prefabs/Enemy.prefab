@@ -198,6 +198,7 @@ MonoBehaviour:
   isMoving: 0
   Speed: 4
   enemy: {fileID: 0}
+  animator: {fileID: 753340859568696621}
 --- !u!50 &1491955140738861477
 Rigidbody2D:
   serializedVersion: 5

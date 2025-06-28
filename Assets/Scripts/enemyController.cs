@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 
@@ -6,13 +7,19 @@ public class enemyController : MonoBehaviour
     // Update is called once per frame
     [SerializeField] bool isMoving;
     Vector3 direction = Vector3.right;
-    [SerializeField] public float Speed = 1f;
+    public float Speed = 1f;
     [SerializeField] GameObject enemy;
+    [SerializeField]
+    private Animator animator;
     private bool hasTurned;
+    bool isWaiting;
+    float waitTime = 3;
 
     void Update()
     {
-        if (PauseManager.Instance.pauseState == PauseState.Paused) { return; } //also pause animation
+        if (PauseManager.Instance.pauseState == PauseState.Paused) { animator.speed = 0; return; } //also pause animation
+        else { animator.speed = 1; }
+        if (isWaiting) { return; }
         if (isMoving)
         {
             transform.position += Speed * Time.deltaTime * direction;
@@ -23,16 +30,35 @@ public class enemyController : MonoBehaviour
         if (collision.gameObject.CompareTag("Border"))
         {
             direction *= -1f;
-            if (!hasTurned) 
-            { 
-                transform.localScale = new Vector3(-1f, 1f, 1f);
-                hasTurned = true;
-            }
-            else
+            isWaiting = true;
+            StartCoroutine(WaitBeforeTurn());
+        }
+    }
+
+    IEnumerator WaitBeforeTurn()
+    {
+        float time = 0f;
+        while (time < waitTime) //https://discussions.unity.com/t/pause-coroutine-and-keep-waitforseconds-the-same/950494/2 < life saver
+        {
+            yield return null;
+            if (PauseManager.Instance.pauseState == PauseState.Paused)
             {
-                transform.localScale = Vector3.one;
-                hasTurned = false;
+                continue;
             }
+            time += Time.deltaTime;
+        }
+        isWaiting = false;
+
+        if (!hasTurned)
+        {
+
+            transform.localScale = new Vector3(-1f, 1f, 1f);
+            hasTurned = true;
+        }
+        else
+        {
+            transform.localScale = Vector3.one;
+            hasTurned = false;
         }
     }
 }
