@@ -131,7 +131,9 @@ public class PlayerControlller : MonoBehaviour
 
         if (transform.position.z != 0f)
         {
+            controller.enabled = false;
             transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+            controller.enabled = true;
         }
 
         if (!IsWall || state == PlayerState.normal)
