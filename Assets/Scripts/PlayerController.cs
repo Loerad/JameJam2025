@@ -88,16 +88,24 @@ public class PlayerControlller : MonoBehaviour
         }
     }
 
-    public void OnExit(InputAction.CallbackContext context)
+    public void Pause(InputAction.CallbackContext context)
     {
-        if(context.action.phase == InputActionPhase.Started)
+        if (context.action.phase == InputActionPhase.Started)
         {
-            SceneManager.LoadScene("Menu");
+            if (PauseManager.pauseState == PauseState.UnPaused)
+            {
+                PauseManager.Instance.Pause();
+            }
+            else
+            {
+                PauseManager.Instance.UnPause();
+            }
         }
     }
     private void Update()
     {
-
+        if (PauseManager.pauseState == PauseState.Paused) { return; }
+        
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0)
         {
