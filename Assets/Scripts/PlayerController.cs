@@ -92,9 +92,10 @@ public class PlayerControlller : MonoBehaviour
     {
         if (context.action.phase == InputActionPhase.Started)
         {
-            if (PauseManager.pauseState == PauseState.UnPaused)
+            if (PauseManager.Instance.pauseState == PauseState.UnPaused)
             {
                 PauseManager.Instance.Pause();
+                
             }
             else
             {
@@ -104,8 +105,9 @@ public class PlayerControlller : MonoBehaviour
     }
     private void Update()
     {
-        if (PauseManager.pauseState == PauseState.Paused) { return; }
-        
+        if (PauseManager.Instance.pauseState == PauseState.Paused) { animator.speed = 0; return; }
+        else { animator.speed = 1; }
+
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0)
         {

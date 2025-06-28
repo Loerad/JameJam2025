@@ -12,7 +12,6 @@ public class RoomManager : MonoBehaviour
 
     [SerializeField]
     private List<GameObject> rooms = new();
-    int roomIndex = 0;
 
     void Awake()
     {

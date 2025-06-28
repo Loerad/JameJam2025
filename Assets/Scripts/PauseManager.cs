@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum PauseState
 {
@@ -8,7 +9,7 @@ public enum PauseState
 public class PauseManager : MonoBehaviour
 {
     public static PauseManager Instance;
-    public static PauseState pauseState;
+    public PauseState pauseState;
     [SerializeField]
     private GameObject menuUI;
     void Awake()
@@ -33,5 +34,10 @@ public class PauseManager : MonoBehaviour
     {
         pauseState = PauseState.UnPaused;
         menuUI.SetActive(false);
+    }
+
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene("Menu");
     }
 }
