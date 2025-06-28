@@ -15,7 +15,7 @@ public class enemyController : MonoBehaviour
         if (PauseManager.Instance.pauseState == PauseState.Paused) { return; } //also pause animation
         if (isMoving)
         {
-            transform.position += direction * Speed * Time.deltaTime;
+            transform.position += Speed * Time.deltaTime * direction;
 
         }
     }

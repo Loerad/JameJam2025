@@ -8,22 +8,24 @@ public class PotController : MonoBehaviour
     [SerializeField] bool isDoorPot;
     public GameObject onGlyph;
     public GameObject startingGlyph;
+    PlayerControlller controller;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            collision.gameObject.GetComponentInParent<PlayerControlller>().AtPot = true;
+            controller = collision.gameObject.GetComponentInParent<PlayerControlller>();
+            controller.AtPot = true;
             if (isDoorPot)
             {
-                collision.gameObject.GetComponentInParent<PlayerControlller>().atDoorPot = true;
-                collision.gameObject.GetComponentInParent<PlayerControlller>().doorToOpenFromPot = door;
-                collision.gameObject.GetComponentInParent<PlayerControlller>().currentPot = this;
+                controller.atDoorPot = true;
+                controller.doorToOpenFromPot = door;
+                controller.currentPot = this;
 
             }
             else
             {
-                collision.gameObject.GetComponentInParent<PlayerControlller>().Enemy = Enemy;
+                controller.Enemy = Enemy;
             }
 
         }
@@ -32,14 +34,15 @@ public class PotController : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            collision.gameObject.GetComponentInParent<PlayerControlller>().AtPot = false;
+            controller = collision.gameObject.GetComponentInParent<PlayerControlller>();
+            controller.AtPot = false;
             if (Enemy != null)
             {
-                collision.gameObject.GetComponentInParent<PlayerControlller>().Enemy = null;
+                controller.Enemy = null;
             }
-            collision.gameObject.GetComponentInParent<PlayerControlller>().atDoorPot = false;
-            collision.gameObject.GetComponentInParent<PlayerControlller>().doorToOpenFromPot = null;
-                            collision.gameObject.GetComponentInParent<PlayerControlller>().currentPot= null;
+            controller.atDoorPot = false;
+            controller.doorToOpenFromPot = null;
+            controller.currentPot= null;
         }
     }
 }

@@ -30,9 +30,10 @@ public class DoorController : MonoBehaviour
         {
             SceneManager.LoadScene("Menu");
         }
-        player.GetComponent<CharacterController>().enabled = false;
+        CharacterController cc = player.GetComponent<CharacterController>();
+        cc.enabled = false;
         player.transform.position = connectedDoor.transform.position + new Vector3(0, 1.1f, 0);
-        player.GetComponent<CharacterController>().enabled = true;
+        cc.enabled = true;
         RoomManager.Instance.ChangeRoom(RoomManager.Instance.GetCurrentRoomFromIndex(connectedDoorRoomIndex));
     }
 
