@@ -52,7 +52,6 @@ public class DoorController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        print("Cheese");
         if (collision.CompareTag("Player"))
         {
             interactor.ReceiveDoor(gameObject, isGameExit, isLocked);
