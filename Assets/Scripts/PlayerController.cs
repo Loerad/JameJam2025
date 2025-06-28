@@ -129,6 +129,11 @@ public class PlayerControlller : MonoBehaviour
             transform.right = move;
         }
 
+        if (transform.position.z != 0f)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+        }
+
         if (!IsWall || state == PlayerState.normal)
         {
             state = PlayerState.normal;
