@@ -7,7 +7,7 @@ public class PlayerDetection : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            SceneManager.LoadScene("Game"); // Enter the loaded scene
+            RespawnManager.Instance.Respawn();
         }
     }
 }

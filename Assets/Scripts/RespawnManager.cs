@@ -5,8 +5,7 @@ public class RespawnManager : MonoBehaviour
 {
     public static RespawnManager Instance;
     public List<GameObject> respawnPoints = new();
-    [HideInInspector]
-    public GameObject currentSpawn;
+    private GameObject currentSpawn;
     [SerializeField]
     private GameObject player;
 
@@ -27,9 +26,9 @@ public class RespawnManager : MonoBehaviour
         currentSpawn = respawnPoints[0]; //the 0th respawn point should always be first in the list
     }
 
-    public void SetNextRespawn()
+    public void SetRespawn(GameObject point)
     {
-        currentSpawn = respawnPoints[respawnPoints.IndexOf(currentSpawn) + 1];
+        currentSpawn = point;
     }
 
     public void Respawn()

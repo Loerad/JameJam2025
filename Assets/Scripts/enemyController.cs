@@ -16,7 +16,6 @@ public class enemyController : MonoBehaviour
         if (isMoving)
         {
             transform.position += Speed * Time.deltaTime * direction;
-
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
