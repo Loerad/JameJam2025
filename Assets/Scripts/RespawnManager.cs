@@ -8,6 +8,12 @@ public class RespawnManager : MonoBehaviour
     private GameObject currentSpawn;
     [SerializeField]
     private GameObject player;
+    [SerializeField]
+    private GameObject cam;
+
+    [SerializeField]
+    private Transform camPos1, camPos2;
+    private Transform camPosition;
 
     void Awake()
     {
@@ -36,6 +42,16 @@ public class RespawnManager : MonoBehaviour
         CharacterController cc = player.GetComponent<CharacterController>();
         cc.enabled = false;
         player.transform.position = currentSpawn.transform.position;
+        if (currentSpawn == respawnPoints[0] || currentSpawn == respawnPoints[2])
+        {
+            camPosition = camPos1;
+        }
+        else
+        {
+            camPosition = camPos2;
+        }
+        cam.transform.position = camPosition.position;
+        cam.transform.position = new Vector3(cam.transform.position.x, cam.transform.position.y, -10);
         cc.enabled = true;
     }
 }
