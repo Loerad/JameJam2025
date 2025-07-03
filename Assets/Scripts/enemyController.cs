@@ -14,9 +14,17 @@ public class enemyController : MonoBehaviour
     private bool hasTurned;
     bool isWaiting;
     float waitTime = 3;
+    private float startY;
+
+    void Start()
+    {
+        startY = transform.position.y;
+    }
 
     void Update()
     {
+        transform.position = new Vector3(transform.position.x, startY, transform.position.z);
+        transform.rotation = Quaternion.Euler(Vector3.zero);
         if (PauseManager.Instance.pauseState == PauseState.Paused) { animator.speed = 0; return; } //also pause animation
         else { animator.speed = 1; }
         if (isWaiting) { return; }
